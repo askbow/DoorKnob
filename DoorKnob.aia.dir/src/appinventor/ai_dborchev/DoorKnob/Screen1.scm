@@ -1,0 +1,4 @@
+#|
+$JSON
+{"YaVersion":"106","Source":"Form","Properties":{"$Name":"Screen1","$Type":"Form","$Version":"13","Uuid":"0","AboutScreen":"DoorKnob","AlignHorizontal":"3","AlignVertical":"2","OpenScreenAnimation":"fade","Scrollable":"True","Title":"DoorKnob CPAM door opener for Android","$Components":[{"$Name":"VerticalArrangement1","$Type":"VerticalArrangement","$Version":"2","Uuid":"1107133810","AlignHorizontal":"3","AlignVertical":"2","Width":"-2","Height":"-2","$Components":[{"$Name":"btn_dooropen","$Type":"Button","$Version":"6","Uuid":"946829958","FontSize":"18.0","FontTypeface":"3","Text":"OPEN THE DOOR","Width":"-2","Height":"200"},{"$Name":"btn_settings","$Type":"Button","$Version":"6","Uuid":"-1403375418","Text":"Settings..."}]},{"$Name":"Web1","$Type":"Web","$Version":"4","Uuid":"-1429000688"},{"$Name":"TinyDB1","$Type":"TinyDB","$Version":"1","Uuid":"2072253093"},{"$Name":"Notifier1","$Type":"Notifier","$Version":"3","Uuid":"-1086151295"}]}}
+|#

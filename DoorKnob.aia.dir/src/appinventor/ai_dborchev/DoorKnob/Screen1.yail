@@ -1,0 +1,81 @@
+#|
+$Source $Yail
+|#
+
+(define-form appinventor.ai_dborchev.DoorKnob.Screen1 Screen1)
+(require <com.google.youngandroid.runtime>)
+
+(def g$address "http://172.22.156.31")
+(def g$params (call-yail-primitive make-yail-list (*list-for-runtime* (call-yail-primitive make-yail-list (*list-for-runtime* "method" "authenticate" ) '(any any ) "make a list") (call-yail-primitive make-yail-list (*list-for-runtime* "resourceType" "door" ) '(any any ) "make a list") ) '(any any ) "make a list"))
+(def (p$proc_reset )  (set-var! g$params (call-yail-primitive make-yail-list (*list-for-runtime* (call-yail-primitive make-yail-list (*list-for-runtime* "method" "authenticate" ) '(any any ) "make a list") (call-yail-primitive make-yail-list (*list-for-runtime* "resourceType" "door" ) '(any any ) "make a list") ) '(any any ) "make a list"))(call-yail-primitive yail-list-add-to-list! (*list-for-runtime* (get-var g$params) (call-yail-primitive make-yail-list (*list-for-runtime* "UserName" (call-component-method 'TinyDB1 'GetValue (*list-for-runtime* "userid"  "cpamadmin") '(text any)) ) '(any any ) "make a list") (call-yail-primitive make-yail-list (*list-for-runtime* "pass" (call-component-method 'TinyDB1 'GetValue (*list-for-runtime* "userpsw"  "cisco") '(text any)) ) '(any any ) "make a list") (call-yail-primitive make-yail-list (*list-for-runtime* "resourceId" (call-component-method 'TinyDB1 'GetValue (*list-for-runtime* "door"  "yYWdfcRiSAS6y086zEQCiA%3D%3D") '(text any)) ) '(any any ) "make a list") ) '(list any any any ) "add items to list"))
+;;; Screen1
+
+(do-after-form-creation (set-and-coerce-property! 'Screen1 'AboutScreen "DoorKnob" 'text)
+ (set-and-coerce-property! 'Screen1 'AlignHorizontal 3 'number)
+ (set-and-coerce-property! 'Screen1 'AlignVertical 2 'number)
+ (set-and-coerce-property! 'Screen1 'OpenScreenAnimation "fade" 'text)
+ (set-and-coerce-property! 'Screen1 'Scrollable #t 'boolean)
+ (set-and-coerce-property! 'Screen1 'Title "DoorKnob CPAM door opener for Android" 'text)
+)
+
+(define-event Screen1 Initialize()(set-this-form)
+    ((get-var p$proc_reset) )(call-component-method 'Web1 'ClearCookies (*list-for-runtime*) '())(set-and-coerce-property! 'Web1 'SaveResponse #f 'boolean))
+(define-event Screen1 OtherScreenClosed($otherScreenName $result)(set-this-form)
+    ((get-var p$proc_reset) ))
+;;; VerticalArrangement1
+
+(add-component Screen1 VerticalArrangement VerticalArrangement1 
+(set-and-coerce-property! 'VerticalArrangement1 'AlignHorizontal 3 'number)
+
+(set-and-coerce-property! 'VerticalArrangement1 'AlignVertical 2 'number)
+
+(set-and-coerce-property! 'VerticalArrangement1 'Width -2 'number)
+
+(set-and-coerce-property! 'VerticalArrangement1 'Height -2 'number)
+
+)
+
+;;; btn_dooropen
+
+(add-component VerticalArrangement1 Button btn_dooropen 
+(set-and-coerce-property! 'btn_dooropen 'FontSize 18.0 'number)
+
+(set-and-coerce-property! 'btn_dooropen 'FontTypeface 3 'number)
+
+(set-and-coerce-property! 'btn_dooropen 'Text "OPEN THE DOOR" 'text)
+
+(set-and-coerce-property! 'btn_dooropen 'Width -2 'number)
+
+(set-and-coerce-property! 'btn_dooropen 'Height 200 'number)
+
+)
+
+(define-event btn_dooropen Click()(set-this-form)
+    (set-and-coerce-property! 'btn_dooropen 'Text (call-yail-primitive string-to-upper-case (*list-for-runtime* "OPENING THE DOOR...") '(text) "upcase") 'text)(set-var! g$address (call-component-method 'TinyDB1 'GetValue (*list-for-runtime* "address"  "http://172.22.156.31") '(text any)))(set-and-coerce-property! 'Web1 'Url (call-yail-primitive string-append (*list-for-runtime* (if (call-yail-primitive string-contains (*list-for-runtime* (get-var g$address) "http://") '(text text) "contains") (get-var g$address) (call-yail-primitive string-append (*list-for-runtime* "http://" (get-var g$address) ) '(text text ) "join")) (call-yail-primitive string-append (*list-for-runtime* "/QuickUnlock.jsp?" (call-component-method 'Web1 'BuildRequestData (*list-for-runtime* (get-var g$params)) '(list)) ) '(text text ) "join") ) '(text text ) "join") 'text)(call-component-method 'Web1 'Get (*list-for-runtime*) '()))
+;;; btn_settings
+
+(add-component VerticalArrangement1 Button btn_settings 
+(set-and-coerce-property! 'btn_settings 'Text "Settings..." 'text)
+
+)
+
+(define-event btn_settings Click()(set-this-form)
+    (call-yail-primitive open-another-screen (*list-for-runtime* "Settings") '(text) "open another screen"))
+;;; Web1
+
+(add-component Screen1 Web Web1 
+)
+
+(define-event Web1 GotText($url $responseCode $responseType $responseContent)(set-this-form)
+    (let ( ($message (call-component-method 'Web1 'XMLTextDecode (*list-for-runtime* (lexical-value $responseContent)) '(text)))  )   (set-lexical! $message (call-yail-primitive string-substring (*list-for-runtime* (lexical-value $message) (call-yail-primitive string-starts-at (*list-for-runtime* (lexical-value $message) "Success") '(text text) "starts at") (call-yail-primitive - (*list-for-runtime* (call-yail-primitive string-length (*list-for-runtime* (lexical-value $message)) '(text) "length") (call-yail-primitive + (*list-for-runtime* (call-yail-primitive string-starts-at (*list-for-runtime* (lexical-value $message) "Success") '(text text) "starts at") 0 ) '(number number ) "+")) '(number number) "-")) '(text number number) "segment"))(set-lexical! $message (call-yail-primitive yail-list-get-item (*list-for-runtime* (call-yail-primitive string-split (*list-for-runtime* (lexical-value $message) ")") '(text text) "split") 1) '(list number) "select list item"))(call-component-method 'Notifier1 'LogInfo (*list-for-runtime* (lexical-value $message)) '(text))(call-component-method 'Notifier1 'ShowAlert (*list-for-runtime* (lexical-value $message)) '(text)) )(set-and-coerce-property! 'btn_dooropen 'Text (call-yail-primitive string-to-upper-case (*list-for-runtime* "OPEN THE DOOR") '(text) "upcase") 'text))
+;;; TinyDB1
+
+(add-component Screen1 TinyDB TinyDB1 
+)
+
+;;; Notifier1
+
+(add-component Screen1 Notifier Notifier1 
+)
+
+(init-runtime)

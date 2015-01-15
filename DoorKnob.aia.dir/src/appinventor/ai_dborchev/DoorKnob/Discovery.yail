@@ -1,0 +1,74 @@
+#|
+$Source $Yail
+|#
+
+(define-form appinventor.ai_dborchev.DoorKnob.Discovery Discovery)
+(require <com.google.youngandroid.runtime>)
+
+(def g$address "http://172.22.156.31")
+(def g$params (call-yail-primitive make-yail-list (*list-for-runtime* (call-yail-primitive make-yail-list (*list-for-runtime* "method" "authenticate" ) '(any any ) "make a list") ) '(any ) "make a list"))
+(def (p$proc_discovery )  (set-var! g$address (call-component-method 'TinyDB1 'GetValue (*list-for-runtime* "address"  "http://172.22.156.31") '(text any)))((get-var p$proc_makeupparams) )(set-and-coerce-property! 'Web1 'Url (call-yail-primitive string-append (*list-for-runtime* (if (call-yail-primitive string-contains (*list-for-runtime* (get-var g$address) "http://") '(text text) "contains") (get-var g$address) (call-yail-primitive string-append (*list-for-runtime* "http://" (get-var g$address) ) '(text text ) "join")) (call-yail-primitive string-append (*list-for-runtime* "/IPPhoneManager.jsp?" (call-component-method 'Web1 'BuildRequestData (*list-for-runtime* (get-var g$params)) '(list)) ) '(text text ) "join") ) '(text text ) "join") 'text)(call-component-method 'Web1 'Get (*list-for-runtime*) '()))
+(def (p$proc_makeupparams )  (set-var! g$params (call-yail-primitive make-yail-list (*list-for-runtime* (call-yail-primitive make-yail-list (*list-for-runtime* "method" "authenticate" ) '(any any ) "make a list") (call-yail-primitive make-yail-list (*list-for-runtime* "UserName" (call-component-method 'TinyDB1 'GetValue (*list-for-runtime* "userid"  "cpamadmin") '(text any)) ) '(any any ) "make a list") (call-yail-primitive make-yail-list (*list-for-runtime* "pass" (call-component-method 'TinyDB1 'GetValue (*list-for-runtime* "userpsw"  "cisco") '(text any)) ) '(any any ) "make a list") ) '(any any any ) "make a list")))
+;;; Discovery
+
+(do-after-form-creation (set-and-coerce-property! 'Discovery 'Title "Discovery" 'text)
+)
+
+(define-event Discovery Initialize()(set-this-form)
+    ((get-var p$proc_discovery) ))
+;;; HorizontalArrangement1
+
+(add-component Discovery HorizontalArrangement HorizontalArrangement1 
+(set-and-coerce-property! 'HorizontalArrangement1 'Width -2 'number)
+
+)
+
+;;; Button1
+
+(add-component HorizontalArrangement1 Button Button1 
+(set-and-coerce-property! 'Button1 'Text "Text for Button1" 'text)
+
+)
+
+(define-event Button1 Click()(set-this-form)
+    (call-yail-primitive close-screen-with-value (*list-for-runtime* (call-component-method 'TinyDB1 'GetValue (*list-for-runtime* "door"  "") '(text any))) '(any) "close screen with value"))
+;;; lbl_discoveree
+
+(add-component HorizontalArrangement1 Label lbl_discoveree 
+(set-and-coerce-property! 'lbl_discoveree 'Text "Look up a door:" 'text)
+
+(set-and-coerce-property! 'lbl_discoveree 'Width -2 'number)
+
+)
+
+;;; btn_retry
+
+(add-component Discovery Button btn_retry 
+(set-and-coerce-property! 'btn_retry 'Text "Retry" 'text)
+
+(set-and-coerce-property! 'btn_retry 'Width -2 'number)
+
+(set-and-coerce-property! 'btn_retry 'Height 100 'number)
+
+)
+
+(define-event btn_retry Click()(set-this-form)
+    ((get-var p$proc_discovery) ))
+;;; TinyDB1
+
+(add-component Discovery TinyDB TinyDB1 
+)
+
+;;; Web1
+
+(add-component Discovery Web Web1 
+)
+
+(define-event Web1 GotText($url $responseCode $responseType $responseContent)(set-this-form)
+    (let ( ($message (call-component-method 'Web1 'XMLTextDecode (*list-for-runtime* (lexical-value $responseContent)) '(text)))  )   (let ( ($Name (call-yail-primitive yail-list-get-item (*list-for-runtime* (call-yail-primitive string-split (*list-for-runtime* (call-yail-primitive string-substring (*list-for-runtime* (lexical-value $message) (call-yail-primitive string-starts-at (*list-for-runtime* (lexical-value $message) "Name") '(text text) "starts at") (call-yail-primitive - (*list-for-runtime* (call-yail-primitive string-length (*list-for-runtime* (lexical-value $message)) '(text) "length") (call-yail-primitive string-length (*list-for-runtime* (call-yail-primitive string-substring (*list-for-runtime* (lexical-value $message) (call-yail-primitive string-starts-at (*list-for-runtime* (lexical-value $message) ") (") '(text text) "starts at") (call-yail-primitive - (*list-for-runtime* (call-yail-primitive string-length (*list-for-runtime* (lexical-value $message)) '(text) "length") (call-yail-primitive string-starts-at (*list-for-runtime* (lexical-value $message) ") (") '(text text) "starts at")) '(number number) "-")) '(text number number) "segment")) '(text) "length")) '(number number) "-")) '(text number number) "segment") ") (") '(text text) "split") 1) '(list number) "select list item"))  )   (set-lexical! $Name (call-yail-primitive string-substring (*list-for-runtime* (lexical-value $Name) (call-yail-primitive string-starts-at (*list-for-runtime* (lexical-value $Name) "Name") '(text text) "starts at") (call-yail-primitive - (*list-for-runtime* (call-yail-primitive string-length (*list-for-runtime* (lexical-value $Name)) '(text) "length") (call-yail-primitive string-starts-at (*list-for-runtime* (lexical-value $Name) ") (") '(text text) "starts at")) '(number number) "-")) '(text number number) "segment"))(call-component-method 'Notifier1 'ShowAlert (*list-for-runtime* (call-yail-primitive string-append (*list-for-runtime* "Found:        " (lexical-value $Name) ) '(text text ) "join")) '(text)) )(let ( ($doorid (call-yail-primitive yail-list-get-item (*list-for-runtime* (call-yail-primitive string-split (*list-for-runtime* (call-yail-primitive yail-list-get-item (*list-for-runtime* (call-yail-primitive string-split (*list-for-runtime* (call-yail-primitive string-substring (*list-for-runtime* (lexical-value $message) (call-yail-primitive string-starts-at (*list-for-runtime* (lexical-value $message) "?") '(text text) "starts at") (call-yail-primitive - (*list-for-runtime* (call-yail-primitive string-length (*list-for-runtime* (lexical-value $message)) '(text) "length") (call-yail-primitive + (*list-for-runtime* (call-yail-primitive string-starts-at (*list-for-runtime* (lexical-value $message) "?") '(text text) "starts at") (call-yail-primitive string-length (*list-for-runtime* (call-yail-primitive string-substring (*list-for-runtime* (lexical-value $message) (call-yail-primitive string-starts-at (*list-for-runtime* (lexical-value $message) ")))") '(text text) "starts at") (call-yail-primitive - (*list-for-runtime* (call-yail-primitive string-length (*list-for-runtime* (lexical-value $message)) '(text) "length") (call-yail-primitive string-starts-at (*list-for-runtime* (lexical-value $message) ")))") '(text text) "starts at")) '(number number) "-")) '(text number number) "segment")) '(text) "length") ) '(number number ) "+")) '(number number) "-")) '(text number number) "segment") "&") '(text text) "split") 3) '(list number) "select list item") "=") '(text text) "split") 2) '(list number) "select list item"))  )   (call-component-method 'Notifier1 'ShowAlert (*list-for-runtime* (call-yail-primitive string-append (*list-for-runtime* "Door ID:        " (lexical-value $doorid) ) '(text text ) "join")) '(text))(call-yail-primitive close-screen-with-value (*list-for-runtime* (lexical-value $doorid)) '(any) "close screen with value") ) ))
+;;; Notifier1
+
+(add-component Discovery Notifier Notifier1 
+)
+
+(init-runtime)

@@ -1,0 +1,511 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="global_declaration" id="1" inline="false" x="-117" y="-62">
+    <field name="NAME">address</field>
+    <value name="VALUE">
+      <block type="text" id="2">
+        <field name="TEXT">http://172.22.156.31</field>
+      </block>
+    </value>
+  </block>
+  <block type="global_declaration" id="3" inline="false" x="-116" y="-25">
+    <field name="NAME">params</field>
+    <value name="VALUE">
+      <block type="lists_create_with" id="4" inline="false">
+        <mutation items="2"></mutation>
+        <value name="ADD0">
+          <block type="lists_create_with" id="63" inline="false">
+            <mutation items="2"></mutation>
+            <value name="ADD0">
+              <block type="text" id="5">
+                <field name="TEXT">method</field>
+              </block>
+            </value>
+            <value name="ADD1">
+              <block type="text" id="66">
+                <field name="TEXT">authenticate</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <value name="ADD1">
+          <block type="lists_create_with" id="64" inline="false">
+            <mutation items="2"></mutation>
+            <value name="ADD0">
+              <block type="text" id="65">
+                <field name="TEXT">resourceType</field>
+              </block>
+            </value>
+            <value name="ADD1">
+              <block type="text" id="6">
+                <field name="TEXT">door</field>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </value>
+  </block>
+  <block type="component_event" id="104" x="541" y="-40">
+    <mutation component_type="Form" instance_name="Screen1" event_name="Initialize"></mutation>
+    <field name="COMPONENT_SELECTOR">Screen1</field>
+    <statement name="DO">
+      <block type="procedures_callnoreturn" id="1496">
+        <mutation name="proc_reset"></mutation>
+        <field name="PROCNAME">proc_reset</field>
+        <next>
+          <block type="component_method" id="132">
+            <mutation component_type="Web" method_name="ClearCookies" is_generic="false" instance_name="Web1"></mutation>
+            <field name="COMPONENT_SELECTOR">Web1</field>
+            <next>
+              <block type="component_set_get" id="188" inline="false">
+                <mutation component_type="Web" set_or_get="set" property_name="SaveResponse" is_generic="false" instance_name="Web1"></mutation>
+                <field name="COMPONENT_SELECTOR">Web1</field>
+                <field name="PROP">SaveResponse</field>
+                <value name="VALUE">
+                  <block type="logic_false" id="195">
+                    <field name="BOOL">FALSE</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="10" x="-86" y="99">
+    <mutation component_type="Button" instance_name="btn_dooropen" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">btn_dooropen</field>
+    <statement name="DO">
+      <block type="component_set_get" id="842" inline="false">
+        <mutation component_type="Button" set_or_get="set" property_name="Text" is_generic="false" instance_name="btn_dooropen"></mutation>
+        <field name="COMPONENT_SELECTOR">btn_dooropen</field>
+        <field name="PROP">Text</field>
+        <value name="VALUE">
+          <block type="text_changeCase" id="888" inline="false">
+            <field name="OP">UPCASE</field>
+            <value name="TEXT">
+              <block type="text" id="856">
+                <field name="TEXT">OPENING THE DOOR...</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="lexical_variable_set" id="11" inline="false">
+            <field name="VAR">global address</field>
+            <value name="VALUE">
+              <block type="component_method" id="12" inline="false">
+                <mutation component_type="TinyDB" method_name="GetValue" is_generic="false" instance_name="TinyDB1"></mutation>
+                <field name="COMPONENT_SELECTOR">TinyDB1</field>
+                <value name="ARG0">
+                  <block type="text" id="13">
+                    <field name="TEXT">address</field>
+                  </block>
+                </value>
+                <value name="ARG1">
+                  <block type="text" id="14">
+                    <field name="TEXT">http://172.22.156.31</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="component_set_get" id="26" inline="false">
+                <mutation component_type="Web" set_or_get="set" property_name="Url" is_generic="false" instance_name="Web1"></mutation>
+                <field name="COMPONENT_SELECTOR">Web1</field>
+                <field name="PROP">Url</field>
+                <value name="VALUE">
+                  <block type="text_join" id="28" inline="false">
+                    <mutation items="2"></mutation>
+                    <value name="ADD0">
+                      <block type="controls_choose" id="29" inline="false">
+                        <value name="TEST">
+                          <block type="text_contains" id="30" inline="false">
+                            <value name="TEXT">
+                              <block type="lexical_variable_get" id="31">
+                                <field name="VAR">global address</field>
+                              </block>
+                            </value>
+                            <value name="PIECE">
+                              <block type="text" id="32">
+                                <field name="TEXT">http://</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <value name="THENRETURN">
+                          <block type="lexical_variable_get" id="33">
+                            <field name="VAR">global address</field>
+                          </block>
+                        </value>
+                        <value name="ELSERETURN">
+                          <block type="text_join" id="34" inline="false">
+                            <mutation items="2"></mutation>
+                            <value name="ADD0">
+                              <block type="text" id="35">
+                                <field name="TEXT">http://</field>
+                              </block>
+                            </value>
+                            <value name="ADD1">
+                              <block type="lexical_variable_get" id="36">
+                                <field name="VAR">global address</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="ADD1">
+                      <block type="text_join" id="37" inline="false">
+                        <mutation items="2"></mutation>
+                        <value name="ADD0">
+                          <block type="text" id="38">
+                            <field name="TEXT">/QuickUnlock.jsp?</field>
+                          </block>
+                        </value>
+                        <value name="ADD1">
+                          <block type="component_method" id="39" inline="false">
+                            <mutation component_type="Web" method_name="BuildRequestData" is_generic="false" instance_name="Web1"></mutation>
+                            <field name="COMPONENT_SELECTOR">Web1</field>
+                            <value name="ARG0">
+                              <block type="lexical_variable_get" id="40">
+                                <field name="VAR">global params</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="component_method" id="758">
+                    <mutation component_type="Web" method_name="Get" is_generic="false" instance_name="Web1"></mutation>
+                    <field name="COMPONENT_SELECTOR">Web1</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="7" x="545" y="89">
+    <mutation component_type="Button" instance_name="btn_settings" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">btn_settings</field>
+    <statement name="DO">
+      <block type="controls_openAnotherScreen" id="8" inline="false">
+        <value name="SCREEN">
+          <block type="text" id="9">
+            <field name="TEXT">Settings</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="640" x="961" y="72">
+    <mutation component_type="Form" instance_name="Screen1" event_name="OtherScreenClosed"></mutation>
+    <field name="COMPONENT_SELECTOR">Screen1</field>
+    <statement name="DO">
+      <block type="procedures_callnoreturn" id="1492">
+        <mutation name="proc_reset"></mutation>
+        <field name="PROCNAME">proc_reset</field>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" id="1409" x="894" y="208">
+    <mutation></mutation>
+    <field name="NAME">proc_reset</field>
+    <statement name="STACK">
+      <block type="lexical_variable_set" id="706" inline="false">
+        <field name="VAR">global params</field>
+        <value name="VALUE">
+          <block type="lists_create_with" id="707" inline="false">
+            <mutation items="2"></mutation>
+            <value name="ADD0">
+              <block type="lists_create_with" id="708" inline="false">
+                <mutation items="2"></mutation>
+                <value name="ADD0">
+                  <block type="text" id="709">
+                    <field name="TEXT">method</field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="text" id="710">
+                    <field name="TEXT">authenticate</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <value name="ADD1">
+              <block type="lists_create_with" id="711" inline="false">
+                <mutation items="2"></mutation>
+                <value name="ADD0">
+                  <block type="text" id="712">
+                    <field name="TEXT">resourceType</field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="text" id="713">
+                    <field name="TEXT">door</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="lists_add_items" id="714" inline="false">
+            <mutation items="3"></mutation>
+            <value name="LIST">
+              <block type="lexical_variable_get" id="715">
+                <field name="VAR">global params</field>
+              </block>
+            </value>
+            <value name="ITEM0">
+              <block type="lists_create_with" id="716" inline="false">
+                <mutation items="2"></mutation>
+                <value name="ADD0">
+                  <block type="text" id="717">
+                    <field name="TEXT">UserName</field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="component_method" id="718" inline="false">
+                    <mutation component_type="TinyDB" method_name="GetValue" is_generic="false" instance_name="TinyDB1"></mutation>
+                    <field name="COMPONENT_SELECTOR">TinyDB1</field>
+                    <value name="ARG0">
+                      <block type="text" id="719">
+                        <field name="TEXT">userid</field>
+                      </block>
+                    </value>
+                    <value name="ARG1">
+                      <block type="text" id="720">
+                        <field name="TEXT">cpamadmin</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <value name="ITEM1">
+              <block type="lists_create_with" id="721" inline="false">
+                <mutation items="2"></mutation>
+                <value name="ADD0">
+                  <block type="text" id="722">
+                    <field name="TEXT">pass</field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="component_method" id="723" inline="false">
+                    <mutation component_type="TinyDB" method_name="GetValue" is_generic="false" instance_name="TinyDB1"></mutation>
+                    <field name="COMPONENT_SELECTOR">TinyDB1</field>
+                    <value name="ARG0">
+                      <block type="text" id="724">
+                        <field name="TEXT">userpsw</field>
+                      </block>
+                    </value>
+                    <value name="ARG1">
+                      <block type="text" id="725">
+                        <field name="TEXT">cisco</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <value name="ITEM2">
+              <block type="lists_create_with" id="726" inline="false">
+                <mutation items="2"></mutation>
+                <value name="ADD0">
+                  <block type="text" id="727">
+                    <field name="TEXT">resourceId</field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="component_method" id="728" inline="false">
+                    <mutation component_type="TinyDB" method_name="GetValue" is_generic="false" instance_name="TinyDB1"></mutation>
+                    <field name="COMPONENT_SELECTOR">TinyDB1</field>
+                    <value name="ARG0">
+                      <block type="text" id="729">
+                        <field name="TEXT">door</field>
+                      </block>
+                    </value>
+                    <value name="ARG1">
+                      <block type="text" id="730">
+                        <field name="TEXT">yYWdfcRiSAS6y086zEQCiA%3D%3D</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="223" x="-86" y="488">
+    <mutation component_type="Web" instance_name="Web1" event_name="GotText"></mutation>
+    <field name="COMPONENT_SELECTOR">Web1</field>
+    <statement name="DO">
+      <block type="local_declaration_statement" id="927" inline="false">
+        <mutation>
+          <localname name="message"></localname>
+        </mutation>
+        <field name="VAR0">message</field>
+        <value name="DECL0">
+          <block type="component_method" id="324" inline="false">
+            <mutation component_type="Web" method_name="XMLTextDecode" is_generic="false" instance_name="Web1"></mutation>
+            <field name="COMPONENT_SELECTOR">Web1</field>
+            <value name="ARG0">
+              <block type="lexical_variable_get" id="327">
+                <mutation>
+                  <eventparam name="responseContent"></eventparam>
+                </mutation>
+                <field name="VAR">responseContent</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="STACK">
+          <block type="lexical_variable_set" id="958" inline="false">
+            <field name="VAR">message</field>
+            <value name="VALUE">
+              <block type="text_segment" id="1059" inline="false">
+                <value name="TEXT">
+                  <block type="lexical_variable_get" id="1060">
+                    <field name="VAR">message</field>
+                  </block>
+                </value>
+                <value name="START">
+                  <block type="text_starts_at" id="1061" inline="false">
+                    <value name="TEXT">
+                      <block type="lexical_variable_get" id="1062">
+                        <field name="VAR">message</field>
+                      </block>
+                    </value>
+                    <value name="PIECE">
+                      <block type="text" id="1063">
+                        <field name="TEXT">Success</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <value name="LENGTH">
+                  <block type="math_subtract" id="1064" inline="true">
+                    <value name="A">
+                      <block type="text_length" id="1065" inline="false">
+                        <value name="VALUE">
+                          <block type="lexical_variable_get" id="1066">
+                            <field name="VAR">message</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="math_add" id="1198" inline="true">
+                        <mutation items="2"></mutation>
+                        <value name="NUM0">
+                          <block type="text_starts_at" id="1067" inline="false">
+                            <value name="TEXT">
+                              <block type="lexical_variable_get" id="1068">
+                                <field name="VAR">message</field>
+                              </block>
+                            </value>
+                            <value name="PIECE">
+                              <block type="text" id="1069">
+                                <field name="TEXT">Success</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <value name="NUM1">
+                          <block type="math_number" id="1230">
+                            <field name="NUM">0</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="lexical_variable_set" id="1327" inline="false">
+                <field name="VAR">message</field>
+                <value name="VALUE">
+                  <block type="lists_select_item" id="1349" inline="false">
+                    <value name="LIST">
+                      <block type="text_split" id="1391" inline="false">
+                        <mutation mode="SPLIT"></mutation>
+                        <field name="OP">SPLIT</field>
+                        <value name="TEXT">
+                          <block type="lexical_variable_get" id="1392">
+                            <field name="VAR">message</field>
+                          </block>
+                        </value>
+                        <value name="AT">
+                          <block type="text" id="1406">
+                            <field name="TEXT">)</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="NUM">
+                      <block type="math_number" id="1377">
+                        <field name="NUM">1</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="component_method" id="296" inline="false">
+                    <mutation component_type="Notifier" method_name="LogInfo" is_generic="false" instance_name="Notifier1"></mutation>
+                    <field name="COMPONENT_SELECTOR">Notifier1</field>
+                    <value name="ARG0">
+                      <block type="lexical_variable_get" id="933">
+                        <field name="VAR">message</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="component_method" id="777" inline="false">
+                        <mutation component_type="Notifier" method_name="ShowAlert" is_generic="false" instance_name="Notifier1"></mutation>
+                        <field name="COMPONENT_SELECTOR">Notifier1</field>
+                        <value name="ARG0">
+                          <block type="lexical_variable_get" id="939">
+                            <field name="VAR">message</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="component_set_get" id="857" inline="false">
+            <mutation component_type="Button" set_or_get="set" property_name="Text" is_generic="false" instance_name="btn_dooropen"></mutation>
+            <field name="COMPONENT_SELECTOR">btn_dooropen</field>
+            <field name="PROP">Text</field>
+            <value name="VALUE">
+              <block type="text_changeCase" id="902" inline="false">
+                <field name="OP">UPCASE</field>
+                <value name="TEXT">
+                  <block type="text" id="858">
+                    <field name="TEXT">OPEN THE DOOR</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <yacodeblocks ya-version="106" language-version="17"></yacodeblocks>
+</xml>

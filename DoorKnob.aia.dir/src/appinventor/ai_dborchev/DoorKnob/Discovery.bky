@@ -1,0 +1,695 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="component_event" id="1554" x="242" y="-178">
+    <mutation component_type="Button" instance_name="Button1" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">Button1</field>
+    <statement name="DO">
+      <block type="controls_closeScreenWithValue" id="1555" inline="false">
+        <value name="SCREEN">
+          <block type="component_method" id="1564" inline="false">
+            <mutation component_type="TinyDB" method_name="GetValue" is_generic="false" instance_name="TinyDB1"></mutation>
+            <field name="COMPONENT_SELECTOR">TinyDB1</field>
+            <value name="ARG0">
+              <block type="text" id="1566">
+                <field name="TEXT">door</field>
+              </block>
+            </value>
+            <value name="ARG1">
+              <block type="text" id="1565">
+                <field name="TEXT"></field>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="47" x="7" y="2">
+    <mutation component_type="Form" instance_name="Discovery" event_name="Initialize"></mutation>
+    <field name="COMPONENT_SELECTOR">Discovery</field>
+    <statement name="DO">
+      <block type="procedures_callnoreturn" id="63">
+        <mutation name="proc_discovery"></mutation>
+        <field name="PROCNAME">proc_discovery</field>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="95" x="255" y="5">
+    <mutation component_type="Button" instance_name="btn_retry" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">btn_retry</field>
+    <statement name="DO">
+      <block type="procedures_callnoreturn" id="99">
+        <mutation name="proc_discovery"></mutation>
+        <field name="PROCNAME">proc_discovery</field>
+      </block>
+    </statement>
+  </block>
+  <block type="global_declaration" id="146" inline="false" x="521" y="6">
+    <field name="NAME">address</field>
+    <value name="VALUE">
+      <block type="text" id="160">
+        <field name="TEXT">http://172.22.156.31</field>
+      </block>
+    </value>
+  </block>
+  <block type="global_declaration" id="252" inline="false" x="520" y="40">
+    <field name="NAME">params</field>
+    <value name="VALUE">
+      <block type="lists_create_with" id="274" inline="false">
+        <mutation items="1"></mutation>
+        <value name="ADD0">
+          <block type="lists_create_with" id="296" inline="false">
+            <mutation items="2"></mutation>
+            <value name="ADD0">
+              <block type="text" id="310">
+                <field name="TEXT">method</field>
+              </block>
+            </value>
+            <value name="ADD1">
+              <block type="text" id="324">
+                <field name="TEXT">authenticate</field>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </value>
+  </block>
+  <block type="procedures_defnoreturn" id="57" x="6" y="109">
+    <mutation></mutation>
+    <field name="NAME">proc_discovery</field>
+    <statement name="STACK">
+      <block type="lexical_variable_set" id="140" inline="false">
+        <field name="VAR">global address</field>
+        <value name="VALUE">
+          <block type="component_method" id="168" inline="false">
+            <mutation component_type="TinyDB" method_name="GetValue" is_generic="false" instance_name="TinyDB1"></mutation>
+            <field name="COMPONENT_SELECTOR">TinyDB1</field>
+            <value name="ARG0">
+              <block type="text" id="183">
+                <field name="TEXT">address</field>
+              </block>
+            </value>
+            <value name="ARG1">
+              <block type="text" id="169">
+                <field name="TEXT">http://172.22.156.31</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="procedures_callnoreturn" id="383">
+            <mutation name="proc_makeupparams"></mutation>
+            <field name="PROCNAME">proc_makeupparams</field>
+            <next>
+              <block type="component_set_get" id="134" inline="false">
+                <mutation component_type="Web" set_or_get="set" property_name="Url" is_generic="false" instance_name="Web1"></mutation>
+                <field name="COMPONENT_SELECTOR">Web1</field>
+                <field name="PROP">Url</field>
+                <value name="VALUE">
+                  <block type="text_join" id="397" inline="false">
+                    <mutation items="2"></mutation>
+                    <value name="ADD0">
+                      <block type="controls_choose" id="459" inline="false">
+                        <value name="TEST">
+                          <block type="text_contains" id="521" inline="false">
+                            <value name="TEXT">
+                              <block type="lexical_variable_get" id="527">
+                                <field name="VAR">global address</field>
+                              </block>
+                            </value>
+                            <value name="PIECE">
+                              <block type="text" id="541">
+                                <field name="TEXT">http://</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <value name="THENRETURN">
+                          <block type="lexical_variable_get" id="542">
+                            <field name="VAR">global address</field>
+                          </block>
+                        </value>
+                        <value name="ELSERETURN">
+                          <block type="text_join" id="556" inline="false">
+                            <mutation items="2"></mutation>
+                            <value name="ADD0">
+                              <block type="text" id="557">
+                                <field name="TEXT">http://</field>
+                              </block>
+                            </value>
+                            <value name="ADD1">
+                              <block type="lexical_variable_get" id="558">
+                                <field name="VAR">global address</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="ADD1">
+                      <block type="text_join" id="411" inline="false">
+                        <mutation items="2"></mutation>
+                        <value name="ADD0">
+                          <block type="text" id="507">
+                            <field name="TEXT">/IPPhoneManager.jsp?</field>
+                          </block>
+                        </value>
+                        <value name="ADD1">
+                          <block type="component_method" id="487" inline="false">
+                            <mutation component_type="Web" method_name="BuildRequestData" is_generic="false" instance_name="Web1"></mutation>
+                            <field name="COMPONENT_SELECTOR">Web1</field>
+                            <value name="ARG0">
+                              <block type="lexical_variable_get" id="493">
+                                <field name="VAR">global params</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="component_method" id="238">
+                    <mutation component_type="Web" method_name="Get" is_generic="false" instance_name="Web1"></mutation>
+                    <field name="COMPONENT_SELECTOR">Web1</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" id="246" x="872" y="136">
+    <mutation></mutation>
+    <field name="NAME">proc_makeupparams</field>
+    <statement name="STACK">
+      <block type="lexical_variable_set" id="355" inline="false">
+        <field name="VAR">global params</field>
+        <value name="VALUE">
+          <block type="lists_create_with" id="356" inline="false">
+            <mutation items="3"></mutation>
+            <value name="ADD0">
+              <block type="lists_create_with" id="357" inline="false">
+                <mutation items="2"></mutation>
+                <value name="ADD0">
+                  <block type="text" id="358">
+                    <field name="TEXT">method</field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="text" id="359">
+                    <field name="TEXT">authenticate</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <value name="ADD1">
+              <block type="lists_create_with" id="371" inline="false">
+                <mutation items="2"></mutation>
+                <value name="ADD0">
+                  <block type="text" id="372">
+                    <field name="TEXT">UserName</field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="component_method" id="365" inline="false">
+                    <mutation component_type="TinyDB" method_name="GetValue" is_generic="false" instance_name="TinyDB1"></mutation>
+                    <field name="COMPONENT_SELECTOR">TinyDB1</field>
+                    <value name="ARG0">
+                      <block type="text" id="366">
+                        <field name="TEXT">userid</field>
+                      </block>
+                    </value>
+                    <value name="ARG1">
+                      <block type="text" id="367">
+                        <field name="TEXT">cpamadmin</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <value name="ADD2">
+              <block type="lists_create_with" id="374" inline="false">
+                <mutation items="2"></mutation>
+                <value name="ADD0">
+                  <block type="text" id="375">
+                    <field name="TEXT">pass</field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="component_method" id="376" inline="false">
+                    <mutation component_type="TinyDB" method_name="GetValue" is_generic="false" instance_name="TinyDB1"></mutation>
+                    <field name="COMPONENT_SELECTOR">TinyDB1</field>
+                    <value name="ARG0">
+                      <block type="text" id="377">
+                        <field name="TEXT">userpsw</field>
+                      </block>
+                    </value>
+                    <value name="ARG1">
+                      <block type="text" id="378">
+                        <field name="TEXT">cisco</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="586" x="2" y="518">
+    <mutation component_type="Web" instance_name="Web1" event_name="GotText"></mutation>
+    <field name="COMPONENT_SELECTOR">Web1</field>
+    <statement name="DO">
+      <block type="local_declaration_statement" id="592" inline="false">
+        <mutation>
+          <localname name="message"></localname>
+        </mutation>
+        <field name="VAR0">message</field>
+        <value name="DECL0">
+          <block type="component_method" id="625" inline="false">
+            <mutation component_type="Web" method_name="XMLTextDecode" is_generic="false" instance_name="Web1"></mutation>
+            <field name="COMPONENT_SELECTOR">Web1</field>
+            <value name="ARG0">
+              <block type="lexical_variable_get" id="597">
+                <mutation>
+                  <eventparam name="responseContent"></eventparam>
+                </mutation>
+                <field name="VAR">responseContent</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="STACK">
+          <block type="component_method" id="1009" inline="false" disabled="true">
+            <mutation component_type="Notifier" method_name="ShowAlert" is_generic="false" instance_name="Notifier1"></mutation>
+            <field name="COMPONENT_SELECTOR">Notifier1</field>
+            <value name="ARG0">
+              <block type="text_join" id="1010" inline="false">
+                <mutation items="2"></mutation>
+                <value name="ADD0">
+                  <block type="text" id="1011">
+                    <field name="TEXT">message:     </field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="lexical_variable_get" id="1012">
+                    <field name="VAR">message</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="local_declaration_statement" id="653" inline="false">
+                <mutation>
+                  <localname name="Name"></localname>
+                </mutation>
+                <field name="VAR0">Name</field>
+                <value name="DECL0">
+                  <block type="lists_select_item" id="908" inline="false">
+                    <value name="LIST">
+                      <block type="text_split" id="866" inline="false">
+                        <mutation mode="SPLIT"></mutation>
+                        <field name="OP">SPLIT</field>
+                        <value name="TEXT">
+                          <block type="text_segment" id="667" inline="false">
+                            <value name="TEXT">
+                              <block type="lexical_variable_get" id="668">
+                                <field name="VAR">message</field>
+                              </block>
+                            </value>
+                            <value name="START">
+                              <block type="text_starts_at" id="696" inline="false">
+                                <value name="TEXT">
+                                  <block type="lexical_variable_get" id="697">
+                                    <field name="VAR">message</field>
+                                  </block>
+                                </value>
+                                <value name="PIECE">
+                                  <block type="text" id="682">
+                                    <field name="TEXT">Name</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <value name="LENGTH">
+                              <block type="math_subtract" id="738" inline="true">
+                                <value name="A">
+                                  <block type="text_length" id="752" inline="false">
+                                    <value name="VALUE">
+                                      <block type="lexical_variable_get" id="753">
+                                        <field name="VAR">message</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <value name="B">
+                                  <block type="text_length" id="767" inline="false">
+                                    <value name="VALUE">
+                                      <block type="text_segment" id="781" inline="false">
+                                        <value name="TEXT">
+                                          <block type="lexical_variable_get" id="782">
+                                            <field name="VAR">message</field>
+                                          </block>
+                                        </value>
+                                        <value name="START">
+                                          <block type="text_starts_at" id="783" inline="false">
+                                            <value name="TEXT">
+                                              <block type="lexical_variable_get" id="784">
+                                                <field name="VAR">message</field>
+                                              </block>
+                                            </value>
+                                            <value name="PIECE">
+                                              <block type="text" id="785">
+                                                <field name="TEXT">) (</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <value name="LENGTH">
+                                          <block type="math_subtract" id="813" inline="true">
+                                            <value name="A">
+                                              <block type="text_length" id="827" inline="false">
+                                                <value name="VALUE">
+                                                  <block type="lexical_variable_get" id="828">
+                                                    <field name="VAR">message</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                            <value name="B">
+                                              <block type="text_starts_at" id="829" inline="false">
+                                                <value name="TEXT">
+                                                  <block type="lexical_variable_get" id="830">
+                                                    <field name="VAR">message</field>
+                                                  </block>
+                                                </value>
+                                                <value name="PIECE">
+                                                  <block type="text" id="831">
+                                                    <field name="TEXT">) (</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <value name="AT">
+                          <block type="text" id="886">
+                            <field name="TEXT">) (</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="NUM">
+                      <block type="math_number" id="936">
+                        <field name="NUM">1</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="STACK">
+                  <block type="lexical_variable_set" id="994" inline="false">
+                    <field name="VAR">Name</field>
+                    <value name="VALUE">
+                      <block type="text_segment" id="950" inline="false">
+                        <value name="TEXT">
+                          <block type="lexical_variable_get" id="951">
+                            <field name="VAR">Name</field>
+                          </block>
+                        </value>
+                        <value name="START">
+                          <block type="text_starts_at" id="952" inline="false">
+                            <value name="TEXT">
+                              <block type="lexical_variable_get" id="953">
+                                <field name="VAR">Name</field>
+                              </block>
+                            </value>
+                            <value name="PIECE">
+                              <block type="text" id="954">
+                                <field name="TEXT">Name</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <value name="LENGTH">
+                          <block type="math_subtract" id="955" inline="true">
+                            <value name="A">
+                              <block type="text_length" id="956" inline="false">
+                                <value name="VALUE">
+                                  <block type="lexical_variable_get" id="957">
+                                    <field name="VAR">Name</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="text_starts_at" id="958" inline="false">
+                                <value name="TEXT">
+                                  <block type="lexical_variable_get" id="959">
+                                    <field name="VAR">Name</field>
+                                  </block>
+                                </value>
+                                <value name="PIECE">
+                                  <block type="text" id="960">
+                                    <field name="TEXT">) (</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="component_method" id="832" inline="false">
+                        <mutation component_type="Notifier" method_name="ShowAlert" is_generic="false" instance_name="Notifier1"></mutation>
+                        <field name="COMPONENT_SELECTOR">Notifier1</field>
+                        <value name="ARG0">
+                          <block type="text_join" id="974" inline="false">
+                            <mutation items="2"></mutation>
+                            <value name="ADD0">
+                              <block type="text" id="988">
+                                <field name="TEXT">Found:        </field>
+                              </block>
+                            </value>
+                            <value name="ADD1">
+                              <block type="lexical_variable_get" id="1000">
+                                <field name="VAR">Name</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <next>
+                  <block type="local_declaration_statement" id="1036" inline="false">
+                    <mutation>
+                      <localname name="doorid"></localname>
+                    </mutation>
+                    <field name="VAR0">doorid</field>
+                    <value name="DECL0">
+                      <block type="lists_select_item" id="1473" inline="false">
+                        <value name="LIST">
+                          <block type="text_split" id="1450" inline="false">
+                            <mutation mode="SPLIT"></mutation>
+                            <field name="OP">SPLIT</field>
+                            <value name="TEXT">
+                              <block type="lists_select_item" id="1408" inline="false">
+                                <value name="LIST">
+                                  <block type="text_split" id="1038" inline="false">
+                                    <mutation mode="SPLIT"></mutation>
+                                    <field name="OP">SPLIT</field>
+                                    <value name="TEXT">
+                                      <block type="text_segment" id="1039" inline="false">
+                                        <value name="TEXT">
+                                          <block type="lexical_variable_get" id="1040">
+                                            <field name="VAR">message</field>
+                                          </block>
+                                        </value>
+                                        <value name="START">
+                                          <block type="text_starts_at" id="1041" inline="false">
+                                            <value name="TEXT">
+                                              <block type="lexical_variable_get" id="1042">
+                                                <field name="VAR">message</field>
+                                              </block>
+                                            </value>
+                                            <value name="PIECE">
+                                              <block type="text" id="1043">
+                                                <field name="TEXT">?</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <value name="LENGTH">
+                                          <block type="math_subtract" id="1044" inline="true">
+                                            <value name="A">
+                                              <block type="text_length" id="1045" inline="false">
+                                                <value name="VALUE">
+                                                  <block type="lexical_variable_get" id="1046">
+                                                    <field name="VAR">message</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                            <value name="B">
+                                              <block type="math_add" id="1123" inline="true">
+                                                <mutation items="2"></mutation>
+                                                <value name="NUM0">
+                                                  <block type="text_starts_at" id="1093" inline="false">
+                                                    <value name="TEXT">
+                                                      <block type="lexical_variable_get" id="1094">
+                                                        <field name="VAR">message</field>
+                                                      </block>
+                                                    </value>
+                                                    <value name="PIECE">
+                                                      <block type="text" id="1095">
+                                                        <field name="TEXT">?</field>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </value>
+                                                <value name="NUM1">
+                                                  <block type="text_length" id="1047" inline="false">
+                                                    <value name="VALUE">
+                                                      <block type="text_segment" id="1048" inline="false">
+                                                        <value name="TEXT">
+                                                          <block type="lexical_variable_get" id="1049">
+                                                            <field name="VAR">message</field>
+                                                          </block>
+                                                        </value>
+                                                        <value name="START">
+                                                          <block type="text_starts_at" id="1050" inline="false">
+                                                            <value name="TEXT">
+                                                              <block type="lexical_variable_get" id="1051">
+                                                                <field name="VAR">message</field>
+                                                              </block>
+                                                            </value>
+                                                            <value name="PIECE">
+                                                              <block type="text" id="1052">
+                                                                <field name="TEXT">)))</field>
+                                                              </block>
+                                                            </value>
+                                                          </block>
+                                                        </value>
+                                                        <value name="LENGTH">
+                                                          <block type="math_subtract" id="1053" inline="true">
+                                                            <value name="A">
+                                                              <block type="text_length" id="1054" inline="false">
+                                                                <value name="VALUE">
+                                                                  <block type="lexical_variable_get" id="1055">
+                                                                    <field name="VAR">message</field>
+                                                                  </block>
+                                                                </value>
+                                                              </block>
+                                                            </value>
+                                                            <value name="B">
+                                                              <block type="text_starts_at" id="1056" inline="false">
+                                                                <value name="TEXT">
+                                                                  <block type="lexical_variable_get" id="1057">
+                                                                    <field name="VAR">message</field>
+                                                                  </block>
+                                                                </value>
+                                                                <value name="PIECE">
+                                                                  <block type="text" id="1058">
+                                                                    <field name="TEXT">)))</field>
+                                                                  </block>
+                                                                </value>
+                                                              </block>
+                                                            </value>
+                                                          </block>
+                                                        </value>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <value name="AT">
+                                      <block type="text" id="1059">
+                                        <field name="TEXT">&amp;</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <value name="NUM">
+                                  <block type="math_number" id="1436">
+                                    <field name="NUM">3</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <value name="AT">
+                              <block type="text" id="1451">
+                                <field name="TEXT">=</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <value name="NUM">
+                          <block type="math_number" id="1474">
+                            <field name="NUM">2</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="STACK">
+                      <block type="component_method" id="1370" inline="false">
+                        <mutation component_type="Notifier" method_name="ShowAlert" is_generic="false" instance_name="Notifier1"></mutation>
+                        <field name="COMPONENT_SELECTOR">Notifier1</field>
+                        <value name="ARG0">
+                          <block type="text_join" id="1371" inline="false">
+                            <mutation items="2"></mutation>
+                            <value name="ADD0">
+                              <block type="text" id="1372">
+                                <field name="TEXT">Door ID:        </field>
+                              </block>
+                            </value>
+                            <value name="ADD1">
+                              <block type="lexical_variable_get" id="1373">
+                                <field name="VAR">doorid</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="controls_closeScreenWithValue" id="1521" inline="false">
+                            <value name="SCREEN">
+                              <block type="lexical_variable_get" id="1522">
+                                <field name="VAR">doorid</field>
+                              </block>
+                            </value>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <yacodeblocks ya-version="106" language-version="17"></yacodeblocks>
+</xml>

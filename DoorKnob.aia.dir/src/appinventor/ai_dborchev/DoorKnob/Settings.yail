@@ -1,0 +1,183 @@
+#|
+$Source $Yail
+|#
+
+(define-form appinventor.ai_dborchev.DoorKnob.Settings Settings)
+(require <com.google.youngandroid.runtime>)
+
+;;; Settings
+
+(do-after-form-creation (set-and-coerce-property! 'Settings 'Scrollable #t 'boolean)
+ (set-and-coerce-property! 'Settings 'Title "Settings" 'text)
+)
+
+(define-event Settings Initialize()(set-this-form)
+    (set-and-coerce-property! 'txt_address 'Text (call-component-method 'TinyDB1 'GetValue (*list-for-runtime* "address"  "cpam.example.com") '(text any)) 'text)(set-and-coerce-property! 'txt_username 'Text (call-component-method 'TinyDB1 'GetValue (*list-for-runtime* "userid"  "cpamadmin") '(text any)) 'text)(set-and-coerce-property! 'psw_password 'Text (call-component-method 'TinyDB1 'GetValue (*list-for-runtime* "userpsw"  "cisco") '(text any)) 'text)(set-and-coerce-property! 'txt_doorid 'Text (call-component-method 'TinyDB1 'GetValue (*list-for-runtime* "door"  "None") '(text any)) 'text))
+(define-event Settings OtherScreenClosed($otherScreenName $result)(set-this-form)
+    (if (call-yail-primitive yail-equal? (*list-for-runtime* (lexical-value $otherScreenName) "Discovery") '(any any) "=") (begin   (set-and-coerce-property! 'txt_doorid 'Text (lexical-value $result) 'text)(call-component-method 'TinyDB1 'StoreValue (*list-for-runtime* "door"  (get-property 'txt_doorid 'Text)) '(text any)))))
+;;; btn_close
+
+(add-component Settings Button btn_close 
+(set-and-coerce-property! 'btn_close 'Text "<" 'text)
+
+)
+
+(define-event btn_close Click()(set-this-form)
+    (call-yail-primitive close-screen (*list-for-runtime* ) '() "close screen"))
+;;; HorizontalArrangement1
+
+(add-component Settings HorizontalArrangement HorizontalArrangement1 
+(set-and-coerce-property! 'HorizontalArrangement1 'Width -2 'number)
+
+(set-and-coerce-property! 'HorizontalArrangement1 'Height -2 'number)
+
+)
+
+;;; lbl_address
+
+(add-component HorizontalArrangement1 Label lbl_address 
+(set-and-coerce-property! 'lbl_address 'Text "CPAM address" 'text)
+
+)
+
+;;; txt_address
+
+(add-component HorizontalArrangement1 TextBox txt_address 
+(set-and-coerce-property! 'txt_address 'Hint "Enter IP or hostname" 'text)
+
+(set-and-coerce-property! 'txt_address 'Width -2 'number)
+
+)
+
+(define-event txt_address GotFocus()(set-this-form)
+    (set-and-coerce-property! 'txt_address 'BackgroundColor (call-yail-primitive make-color (*list-for-runtime* (call-yail-primitive make-yail-list (*list-for-runtime* 145 205 237 ) '(any any any ) "make a list")) '(list) "make-color") 'number))
+(define-event txt_address LostFocus()(set-this-form)
+    (call-component-method 'TinyDB1 'StoreValue (*list-for-runtime* "address"  (get-property 'txt_address 'Text)) '(text any))(set-and-coerce-property! 'txt_address 'BackgroundColor -1 'number))
+;;; TableArrangement1
+
+(add-component Settings TableArrangement TableArrangement1 
+(set-and-coerce-property! 'TableArrangement1 'Width -2 'number)
+
+(set-and-coerce-property! 'TableArrangement1 'Height -2 'number)
+
+)
+
+;;; lbl_username
+
+(add-component TableArrangement1 Label lbl_username 
+(set-and-coerce-property! 'lbl_username 'Text "Username:" 'text)
+
+(set-and-coerce-property! 'lbl_username 'Column 0 'number)
+
+(set-and-coerce-property! 'lbl_username 'Row 0 'number)
+
+)
+
+;;; txt_username
+
+(add-component TableArrangement1 TextBox txt_username 
+(set-and-coerce-property! 'txt_username 'Hint "Hint for TextBox2" 'text)
+
+(set-and-coerce-property! 'txt_username 'Column 1 'number)
+
+(set-and-coerce-property! 'txt_username 'Row 0 'number)
+
+)
+
+(define-event txt_username GotFocus()(set-this-form)
+    (set-and-coerce-property! 'txt_username 'BackgroundColor (call-yail-primitive make-color (*list-for-runtime* (call-yail-primitive make-yail-list (*list-for-runtime* 145 205 237 ) '(any any any ) "make a list")) '(list) "make-color") 'number))
+(define-event txt_username LostFocus()(set-this-form)
+    (call-component-method 'TinyDB1 'StoreValue (*list-for-runtime* "userid"  (get-property 'txt_username 'Text)) '(text any))(set-and-coerce-property! 'txt_username 'BackgroundColor -1 'number))
+;;; lbl_password
+
+(add-component TableArrangement1 Label lbl_password 
+(set-and-coerce-property! 'lbl_password 'Text "Password:" 'text)
+
+(set-and-coerce-property! 'lbl_password 'Column 0 'number)
+
+(set-and-coerce-property! 'lbl_password 'Row 1 'number)
+
+)
+
+;;; psw_password
+
+(add-component TableArrangement1 PasswordTextBox psw_password 
+(set-and-coerce-property! 'psw_password 'Column 1 'number)
+
+(set-and-coerce-property! 'psw_password 'Row 1 'number)
+
+)
+
+(define-event psw_password GotFocus()(set-this-form)
+    (set-and-coerce-property! 'psw_password 'Text "" 'text))
+(define-event psw_password LostFocus()(set-this-form)
+    (call-component-method 'TinyDB1 'StoreValue (*list-for-runtime* "userpsw"  (get-property 'psw_password 'Text)) '(text any)))
+;;; lbl_placeholder1
+
+(add-component Settings Label lbl_placeholder1 
+(set-and-coerce-property! 'lbl_placeholder1 'Text "   " 'text)
+
+)
+
+;;; TableArrangement2
+
+(add-component Settings TableArrangement TableArrangement2 
+(set-and-coerce-property! 'TableArrangement2 'Columns 3 'number)
+
+(set-and-coerce-property! 'TableArrangement2 'Width -2 'number)
+
+(set-and-coerce-property! 'TableArrangement2 'Height -2 'number)
+
+)
+
+;;; lbl_doorid
+
+(add-component TableArrangement2 Label lbl_doorid 
+(set-and-coerce-property! 'lbl_doorid 'Text "Door ID" 'text)
+
+(set-and-coerce-property! 'lbl_doorid 'Column 0 'number)
+
+(set-and-coerce-property! 'lbl_doorid 'Row 0 'number)
+
+(set-and-coerce-property! 'lbl_doorid 'Width -2 'number)
+
+)
+
+;;; txt_doorid
+
+(add-component TableArrangement2 TextBox txt_doorid 
+(set-and-coerce-property! 'txt_doorid 'Hint "Hint for TextBox1" 'text)
+
+(set-and-coerce-property! 'txt_doorid 'Column 1 'number)
+
+(set-and-coerce-property! 'txt_doorid 'Row 0 'number)
+
+(set-and-coerce-property! 'txt_doorid 'Width -2 'number)
+
+)
+
+(define-event txt_doorid GotFocus()(set-this-form)
+    (set-and-coerce-property! 'txt_doorid 'BackgroundColor (call-yail-primitive make-color (*list-for-runtime* (call-yail-primitive make-yail-list (*list-for-runtime* 145 205 237 ) '(any any any ) "make a list")) '(list) "make-color") 'number))
+(define-event txt_doorid LostFocus()(set-this-form)
+    (call-component-method 'TinyDB1 'StoreValue (*list-for-runtime* "door"  (get-property 'txt_doorid 'Text)) '(text any))(set-and-coerce-property! 'txt_doorid 'BackgroundColor -1 'number))
+;;; btn_discover
+
+(add-component TableArrangement2 Button btn_discover 
+(set-and-coerce-property! 'btn_discover 'Text "Discover" 'text)
+
+(set-and-coerce-property! 'btn_discover 'Column 1 'number)
+
+(set-and-coerce-property! 'btn_discover 'Row 1 'number)
+
+(set-and-coerce-property! 'btn_discover 'Width -2 'number)
+
+)
+
+(define-event btn_discover Click()(set-this-form)
+    (call-yail-primitive open-another-screen (*list-for-runtime* "Discovery") '(text) "open another screen"))
+;;; TinyDB1
+
+(add-component Settings TinyDB TinyDB1 
+)
+
+(init-runtime)

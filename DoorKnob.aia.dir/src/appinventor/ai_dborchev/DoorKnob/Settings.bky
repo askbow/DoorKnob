@@ -1,0 +1,423 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="component_event" id="1" x="-2" y="6">
+    <mutation component_type="Form" instance_name="Settings" event_name="Initialize"></mutation>
+    <field name="COMPONENT_SELECTOR">Settings</field>
+    <statement name="DO">
+      <block type="component_set_get" id="2" inline="false">
+        <mutation component_type="TextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="txt_address"></mutation>
+        <field name="COMPONENT_SELECTOR">txt_address</field>
+        <field name="PROP">Text</field>
+        <value name="VALUE">
+          <block type="component_method" id="3" inline="false">
+            <mutation component_type="TinyDB" method_name="GetValue" is_generic="false" instance_name="TinyDB1"></mutation>
+            <field name="COMPONENT_SELECTOR">TinyDB1</field>
+            <value name="ARG0">
+              <block type="text" id="4">
+                <field name="TEXT">address</field>
+              </block>
+            </value>
+            <value name="ARG1">
+              <block type="text" id="5">
+                <field name="TEXT">cpam.example.com</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="component_set_get" id="6" inline="false">
+            <mutation component_type="TextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="txt_username"></mutation>
+            <field name="COMPONENT_SELECTOR">txt_username</field>
+            <field name="PROP">Text</field>
+            <value name="VALUE">
+              <block type="component_method" id="7" inline="false">
+                <mutation component_type="TinyDB" method_name="GetValue" is_generic="false" instance_name="TinyDB1"></mutation>
+                <field name="COMPONENT_SELECTOR">TinyDB1</field>
+                <value name="ARG0">
+                  <block type="text" id="8">
+                    <field name="TEXT">userid</field>
+                  </block>
+                </value>
+                <value name="ARG1">
+                  <block type="text" id="9">
+                    <field name="TEXT">cpamadmin</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="component_set_get" id="10" inline="false">
+                <mutation component_type="PasswordTextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="psw_password"></mutation>
+                <field name="COMPONENT_SELECTOR">psw_password</field>
+                <field name="PROP">Text</field>
+                <value name="VALUE">
+                  <block type="component_method" id="11" inline="false">
+                    <mutation component_type="TinyDB" method_name="GetValue" is_generic="false" instance_name="TinyDB1"></mutation>
+                    <field name="COMPONENT_SELECTOR">TinyDB1</field>
+                    <value name="ARG0">
+                      <block type="text" id="12">
+                        <field name="TEXT">userpsw</field>
+                      </block>
+                    </value>
+                    <value name="ARG1">
+                      <block type="text" id="13">
+                        <field name="TEXT">cisco</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="component_set_get" id="14" inline="false">
+                    <mutation component_type="TextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="txt_doorid"></mutation>
+                    <field name="COMPONENT_SELECTOR">txt_doorid</field>
+                    <field name="PROP">Text</field>
+                    <value name="VALUE">
+                      <block type="component_method" id="15" inline="false">
+                        <mutation component_type="TinyDB" method_name="GetValue" is_generic="false" instance_name="TinyDB1"></mutation>
+                        <field name="COMPONENT_SELECTOR">TinyDB1</field>
+                        <value name="ARG0">
+                          <block type="text" id="16">
+                            <field name="TEXT">door</field>
+                          </block>
+                        </value>
+                        <value name="ARG1">
+                          <block type="text" id="17">
+                            <field name="TEXT">None</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="18" x="700" y="11">
+    <mutation component_type="Button" instance_name="btn_close" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">btn_close</field>
+    <statement name="DO">
+      <block type="controls_closeScreen" id="19"></block>
+    </statement>
+  </block>
+  <block type="component_event" id="20" x="700" y="86">
+    <mutation component_type="Button" instance_name="btn_discover" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">btn_discover</field>
+    <statement name="DO">
+      <block type="controls_openAnotherScreen" id="104" inline="false">
+        <value name="SCREEN">
+          <block type="text" id="118">
+            <field name="TEXT">Discovery</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="165" x="1095" y="161">
+    <mutation component_type="Form" instance_name="Settings" event_name="OtherScreenClosed"></mutation>
+    <field name="COMPONENT_SELECTOR">Settings</field>
+    <statement name="DO">
+      <block type="controls_if" id="190" inline="false">
+        <value name="IF0">
+          <block type="logic_compare" id="202" inline="true">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="lexical_variable_get" id="195">
+                <mutation>
+                  <eventparam name="otherScreenName"></eventparam>
+                </mutation>
+                <field name="VAR">otherScreenName</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text" id="216">
+                <field name="TEXT">Discovery</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="component_set_get" id="246" inline="false">
+            <mutation component_type="TextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="txt_doorid"></mutation>
+            <field name="COMPONENT_SELECTOR">txt_doorid</field>
+            <field name="PROP">Text</field>
+            <value name="VALUE">
+              <block type="lexical_variable_get" id="249">
+                <mutation>
+                  <eventparam name="result"></eventparam>
+                </mutation>
+                <field name="VAR">result</field>
+              </block>
+            </value>
+            <next>
+              <block type="component_method" id="217" inline="false">
+                <mutation component_type="TinyDB" method_name="StoreValue" is_generic="false" instance_name="TinyDB1"></mutation>
+                <field name="COMPONENT_SELECTOR">TinyDB1</field>
+                <value name="ARG0">
+                  <block type="text" id="218">
+                    <field name="TEXT">door</field>
+                  </block>
+                </value>
+                <value name="ARG1">
+                  <block type="component_set_get" id="219">
+                    <mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="txt_doorid"></mutation>
+                    <field name="COMPONENT_SELECTOR">txt_doorid</field>
+                    <field name="PROP">Text</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="21" x="2" y="383">
+    <mutation component_type="TextBox" instance_name="txt_address" event_name="GotFocus"></mutation>
+    <field name="COMPONENT_SELECTOR">txt_address</field>
+    <statement name="DO">
+      <block type="component_set_get" id="22" inline="false">
+        <mutation component_type="TextBox" set_or_get="set" property_name="BackgroundColor" is_generic="false" instance_name="txt_address"></mutation>
+        <field name="COMPONENT_SELECTOR">txt_address</field>
+        <field name="PROP">BackgroundColor</field>
+        <value name="VALUE">
+          <block type="color_make_color" id="23" inline="false">
+            <value name="COLORLIST">
+              <block type="lists_create_with" id="24" inline="false">
+                <mutation items="3"></mutation>
+                <value name="ADD0">
+                  <block type="math_number" id="25">
+                    <field name="NUM">145</field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="math_number" id="26">
+                    <field name="NUM">205</field>
+                  </block>
+                </value>
+                <value name="ADD2">
+                  <block type="math_number" id="27">
+                    <field name="NUM">237</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="28" x="717" y="366">
+    <mutation component_type="TextBox" instance_name="txt_address" event_name="LostFocus"></mutation>
+    <field name="COMPONENT_SELECTOR">txt_address</field>
+    <statement name="DO">
+      <block type="component_method" id="29" inline="false">
+        <mutation component_type="TinyDB" method_name="StoreValue" is_generic="false" instance_name="TinyDB1"></mutation>
+        <field name="COMPONENT_SELECTOR">TinyDB1</field>
+        <value name="ARG0">
+          <block type="text" id="30">
+            <field name="TEXT">address</field>
+          </block>
+        </value>
+        <value name="ARG1">
+          <block type="component_set_get" id="31">
+            <mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="txt_address"></mutation>
+            <field name="COMPONENT_SELECTOR">txt_address</field>
+            <field name="PROP">Text</field>
+          </block>
+        </value>
+        <next>
+          <block type="component_set_get" id="32" inline="false">
+            <mutation component_type="TextBox" set_or_get="set" property_name="BackgroundColor" is_generic="false" instance_name="txt_address"></mutation>
+            <field name="COMPONENT_SELECTOR">txt_address</field>
+            <field name="PROP">BackgroundColor</field>
+            <value name="VALUE">
+              <block type="color_white" id="33">
+                <field name="COLOR">#ffffff</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="34" x="-1" y="536">
+    <mutation component_type="TextBox" instance_name="txt_username" event_name="GotFocus"></mutation>
+    <field name="COMPONENT_SELECTOR">txt_username</field>
+    <statement name="DO">
+      <block type="component_set_get" id="35" inline="false">
+        <mutation component_type="TextBox" set_or_get="set" property_name="BackgroundColor" is_generic="false" instance_name="txt_username"></mutation>
+        <field name="COMPONENT_SELECTOR">txt_username</field>
+        <field name="PROP">BackgroundColor</field>
+        <value name="VALUE">
+          <block type="color_make_color" id="36" inline="false">
+            <value name="COLORLIST">
+              <block type="lists_create_with" id="37" inline="false">
+                <mutation items="3"></mutation>
+                <value name="ADD0">
+                  <block type="math_number" id="38">
+                    <field name="NUM">145</field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="math_number" id="39">
+                    <field name="NUM">205</field>
+                  </block>
+                </value>
+                <value name="ADD2">
+                  <block type="math_number" id="40">
+                    <field name="NUM">237</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="41" x="694" y="516">
+    <mutation component_type="TextBox" instance_name="txt_username" event_name="LostFocus"></mutation>
+    <field name="COMPONENT_SELECTOR">txt_username</field>
+    <statement name="DO">
+      <block type="component_method" id="42" inline="false">
+        <mutation component_type="TinyDB" method_name="StoreValue" is_generic="false" instance_name="TinyDB1"></mutation>
+        <field name="COMPONENT_SELECTOR">TinyDB1</field>
+        <value name="ARG0">
+          <block type="text" id="43">
+            <field name="TEXT">userid</field>
+          </block>
+        </value>
+        <value name="ARG1">
+          <block type="component_set_get" id="44">
+            <mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="txt_username"></mutation>
+            <field name="COMPONENT_SELECTOR">txt_username</field>
+            <field name="PROP">Text</field>
+          </block>
+        </value>
+        <next>
+          <block type="component_set_get" id="45" inline="false">
+            <mutation component_type="TextBox" set_or_get="set" property_name="BackgroundColor" is_generic="false" instance_name="txt_username"></mutation>
+            <field name="COMPONENT_SELECTOR">txt_username</field>
+            <field name="PROP">BackgroundColor</field>
+            <value name="VALUE">
+              <block type="color_white" id="46">
+                <field name="COLOR">#ffffff</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="47" x="-3" y="679">
+    <mutation component_type="PasswordTextBox" instance_name="psw_password" event_name="GotFocus"></mutation>
+    <field name="COMPONENT_SELECTOR">psw_password</field>
+    <statement name="DO">
+      <block type="component_set_get" id="48" inline="false">
+        <mutation component_type="PasswordTextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="psw_password"></mutation>
+        <field name="COMPONENT_SELECTOR">psw_password</field>
+        <field name="PROP">Text</field>
+        <value name="VALUE">
+          <block type="text" id="49">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="50" x="694" y="662">
+    <mutation component_type="PasswordTextBox" instance_name="psw_password" event_name="LostFocus"></mutation>
+    <field name="COMPONENT_SELECTOR">psw_password</field>
+    <statement name="DO">
+      <block type="component_method" id="51" inline="false">
+        <mutation component_type="TinyDB" method_name="StoreValue" is_generic="false" instance_name="TinyDB1"></mutation>
+        <field name="COMPONENT_SELECTOR">TinyDB1</field>
+        <value name="ARG0">
+          <block type="text" id="52">
+            <field name="TEXT">userpsw</field>
+          </block>
+        </value>
+        <value name="ARG1">
+          <block type="component_set_get" id="53">
+            <mutation component_type="PasswordTextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="psw_password"></mutation>
+            <field name="COMPONENT_SELECTOR">psw_password</field>
+            <field name="PROP">Text</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="54" x="-3" y="776">
+    <mutation component_type="TextBox" instance_name="txt_doorid" event_name="GotFocus"></mutation>
+    <field name="COMPONENT_SELECTOR">txt_doorid</field>
+    <statement name="DO">
+      <block type="component_set_get" id="55" inline="false">
+        <mutation component_type="TextBox" set_or_get="set" property_name="BackgroundColor" is_generic="false" instance_name="txt_doorid"></mutation>
+        <field name="COMPONENT_SELECTOR">txt_doorid</field>
+        <field name="PROP">BackgroundColor</field>
+        <value name="VALUE">
+          <block type="color_make_color" id="56" inline="false">
+            <value name="COLORLIST">
+              <block type="lists_create_with" id="57" inline="false">
+                <mutation items="3"></mutation>
+                <value name="ADD0">
+                  <block type="math_number" id="58">
+                    <field name="NUM">145</field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="math_number" id="59">
+                    <field name="NUM">205</field>
+                  </block>
+                </value>
+                <value name="ADD2">
+                  <block type="math_number" id="60">
+                    <field name="NUM">237</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="61" x="694" y="788">
+    <mutation component_type="TextBox" instance_name="txt_doorid" event_name="LostFocus"></mutation>
+    <field name="COMPONENT_SELECTOR">txt_doorid</field>
+    <statement name="DO">
+      <block type="component_method" id="62" inline="false">
+        <mutation component_type="TinyDB" method_name="StoreValue" is_generic="false" instance_name="TinyDB1"></mutation>
+        <field name="COMPONENT_SELECTOR">TinyDB1</field>
+        <value name="ARG0">
+          <block type="text" id="63">
+            <field name="TEXT">door</field>
+          </block>
+        </value>
+        <value name="ARG1">
+          <block type="component_set_get" id="64">
+            <mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="txt_doorid"></mutation>
+            <field name="COMPONENT_SELECTOR">txt_doorid</field>
+            <field name="PROP">Text</field>
+          </block>
+        </value>
+        <next>
+          <block type="component_set_get" id="65" inline="false">
+            <mutation component_type="TextBox" set_or_get="set" property_name="BackgroundColor" is_generic="false" instance_name="txt_doorid"></mutation>
+            <field name="COMPONENT_SELECTOR">txt_doorid</field>
+            <field name="PROP">BackgroundColor</field>
+            <value name="VALUE">
+              <block type="color_white" id="66">
+                <field name="COLOR">#ffffff</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <yacodeblocks ya-version="106" language-version="17"></yacodeblocks>
+</xml>

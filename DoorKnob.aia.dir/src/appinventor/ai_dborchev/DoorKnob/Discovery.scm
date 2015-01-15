@@ -1,0 +1,4 @@
+#|
+$JSON
+{"YaVersion":"106","Source":"Form","Properties":{"$Name":"Discovery","$Type":"Form","$Version":"13","Uuid":"0","Title":"Discovery","$Components":[{"$Name":"HorizontalArrangement1","$Type":"HorizontalArrangement","$Version":"2","Uuid":"110049261","Width":"-2","$Components":[{"$Name":"Button1","$Type":"Button","$Version":"6","Uuid":"407483669","Text":"Text for Button1"},{"$Name":"lbl_discoveree","$Type":"Label","$Version":"2","Uuid":"-252276025","Text":"Look up a door:","Width":"-2"}]},{"$Name":"btn_retry","$Type":"Button","$Version":"6","Uuid":"592323652","Text":"Retry","Width":"-2","Height":"100"},{"$Name":"TinyDB1","$Type":"TinyDB","$Version":"1","Uuid":"229492389"},{"$Name":"Web1","$Type":"Web","$Version":"4","Uuid":"-980557319"},{"$Name":"Notifier1","$Type":"Notifier","$Version":"3","Uuid":"448743890"}]}}
+|#
