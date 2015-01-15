@@ -21,19 +21,19 @@ DoorKnob connects to CPAM via HTTP, sending GET requests to CPAM scripts designe
 
 Basically:
 
-DoorKnob====HTTP-GET=====>CPAM
+        DoorKnob====HTTP-GET=====>CPAM
 
-        <===HTTP-REPLY====
+                <===HTTP-REPLY====
 		
 I use two CPAM web methods in DoorKnob's operation:
 
 1. To request access to open the door specified in settings:
 
-     http://cpam.example.com/QuickUnlock.jsp?UserName=<USERNAME>&pass=<PASSWORD>&method=authenticate&resourceId=<DOORID>&resourceType=door
+     http://cpam.example.com/QuickUnlock.jsp?UserName=USERNAME&pass=PASSWORD&method=authenticate&resourceId=DOORID&resourceType=door
 	 
 2. To discover the DOORID, which the specified user has rights to open via web on the CPAM, server specified:
 
-     http://cpam.example.com/IPPhoneManager.jsp?UserName=<USERNAME>&pass=<PASSWORD>&method=authenticate
+     http://cpam.example.com/IPPhoneManager.jsp?UserName=USERNAME&pass=PASSWORD&method=authenticate
 
 DoorKnob stores its settings internally via the MITai component TinyDB.
 
@@ -43,12 +43,12 @@ Install the app from the DoorKnob.apk file directly or use the DoorKnob.aia file
 
 Run the app after installation.
 
-In the main screen, click/tap <<Settings>> to open the Settings screen.
-Specify CPAM server address, username/password and then click/tap <<Discover>>.
-The Discovery screen might open briefly (even so briefly that you won't notice it, if there are no errors), connect to CPAM server specified and copy the <<resourseId>> of the first door listed in the server response to the <<Door ID>> field of the Settings screen. 
-Click/tap the little arrow "<" (back button) to return to the main screen.
+In the main screen, click/tap Settings to open the Settings screen.
+Specify CPAM server address, username/password and then click/tap Discover.
+The Discovery screen might open briefly (even so briefly that you won't notice it, if there are no errors), connect to CPAM server specified and copy the resourseId of the first door listed in the server response to the Door ID field of the Settings screen. 
+Click/tap the little arrow (back button) to return to the main screen.
 
-Now you can click/tap <<OPEN THE DOOR>>. DoorKnob sends a request to grant access and briefly displays server's reply.
+Now you can click/tap OPEN THE DOOR. DoorKnob sends a request to grant access and briefly displays server's reply.
 
 If everything is OK, the specified door should go to GranTAccess or Open state in CPAM.
 
